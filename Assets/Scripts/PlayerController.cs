@@ -13,7 +13,10 @@ public class PlayerController : MonoBehaviour {
     private bool diveForward;
     private bool isAim;
     private bool isDrawArrow;
+
+
     public GameObject bow;
+    public float aimingWeight;
 
     // Use this for initialization
     void Start () {
@@ -102,5 +105,16 @@ public class PlayerController : MonoBehaviour {
         }
 
         rbody.velocity = new Vector3(moveX, 0f, moveZ);
+    }
+
+    void LateUpdate() {
+        aimingWeight = Mathf.MoveTowards(aimingWeight, (isAim)? 1.0f : 0.0f, Time.deltaTime * 5);
+
+        Vector3 normalState = new Vector3(0,0,-2f);
+        Vector3 aimingState = new Vector3(0, 0, 0.3f);
+
+        Vector3 pos = Vector3.Lerp(normalState, aimingState, aimingWeight);
+
+        m_Cam.transform.localPosition = pos;
     }
 }

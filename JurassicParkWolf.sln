@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JurassicParkWolf.CSharp.Plugins", "JurassicParkWolf.CSharp.Plugins.csproj", "{9B48A598-EF1B-0827-C1FE-B3CAC14FFE54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JurassicParkWolf.CSharp", "JurassicParkWolf.CSharp.csproj", "{0BA8E17B-4AEF-0B3C-9348-01F023A28A65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JurassicParkWolf.CSharp.Editor", "JurassicParkWolf.CSharp.Editor.csproj", "{B06803DF-8616-0C66-8415-1322FE8FF577}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B48A598-EF1B-0827-C1FE-B3CAC14FFE54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B48A598-EF1B-0827-C1FE-B3CAC14FFE54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B48A598-EF1B-0827-C1FE-B3CAC14FFE54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B48A598-EF1B-0827-C1FE-B3CAC14FFE54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA8E17B-4AEF-0B3C-9348-01F023A28A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA8E17B-4AEF-0B3C-9348-01F023A28A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA8E17B-4AEF-0B3C-9348-01F023A28A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA8E17B-4AEF-0B3C-9348-01F023A28A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B06803DF-8616-0C66-8415-1322FE8FF577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06803DF-8616-0C66-8415-1322FE8FF577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B06803DF-8616-0C66-8415-1322FE8FF577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B06803DF-8616-0C66-8415-1322FE8FF577}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
