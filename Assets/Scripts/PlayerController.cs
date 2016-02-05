@@ -18,6 +18,17 @@ public class PlayerController : MonoBehaviour {
     public GameObject bow;
     public float aimingWeight;
 
+    //IK stuff
+    public Transform spine;
+    public float aimingZ = 213.46f;
+    public float aimingX = -65.93f;
+    public float aimingY = -20.1f;
+    public float point = 30f;
+
+    //Arrow
+    public Transform wepon;
+    public GameObject arrow;
+
     // Use this for initialization
     void Start () {
         // get the transform of the main camera
@@ -58,7 +69,6 @@ public class PlayerController : MonoBehaviour {
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("click down");
             isDrawArrow = true;
             anim.SetBool("isDrawArrow", isDrawArrow);
         }
@@ -66,6 +76,8 @@ public class PlayerController : MonoBehaviour {
         {
             isDrawArrow = false;
             anim.SetBool("isDrawArrow", isDrawArrow);
+            GameObject Arrow = Instantiate(arrow, wepon.position, wepon.rotation) as GameObject;
+            Arrow.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 500f));
         }
 
         anim.SetFloat("inputH", inputH);
@@ -111,10 +123,21 @@ public class PlayerController : MonoBehaviour {
         aimingWeight = Mathf.MoveTowards(aimingWeight, (isAim)? 1.0f : 0.0f, Time.deltaTime * 5);
 
         Vector3 normalState = new Vector3(0,0,-2f);
-        Vector3 aimingState = new Vector3(0, 0, 0.3f);
+        Vector3 aimingState = new Vector3(0, 0, 0f);
 
         Vector3 pos = Vector3.Lerp(normalState, aimingState, aimingWeight);
 
         m_Cam.transform.localPosition = pos;
+
+        if (isAim)
+        {
+            Vector3 eulerAngleOffset = Vector3.zero;
+            eulerAngleOffset = new Vector3(aimingX, aimingY, aimingZ);
+            Ray ray = new Ray(m_Cam.position, m_Cam.forward);
+            Vector3 lookPostion = ray.GetPoint(point);
+
+            spine.LookAt(lookPostion);
+            spine.Rotate(eulerAngleOffset, Space.Self);
+        }
     }
 }

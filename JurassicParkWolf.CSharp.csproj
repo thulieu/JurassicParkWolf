@@ -133,7 +133,6 @@
     <Compile Include="Assets\Scripts\PlayerGUI.cs" />
     <Compile Include="Assets\Scripts\RandomMovement.cs" />
     <Compile Include="Assets\Scripts\SetSunLight.cs" />
-    <Compile Include="Assets\Scripts\ThrowSpear.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Allosaurus\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />
