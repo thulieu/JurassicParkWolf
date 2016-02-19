@@ -28,9 +28,10 @@ public class RandomMovement : MonoBehaviour {
     AudioSource audio;
     Rigidbody rig;
     float health = 100f;
+    bool damaged = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         cc = GetComponent<CharacterController>();
         audio = GetComponent<AudioSource>();
         rig = GetComponent<Rigidbody>();
@@ -41,15 +42,7 @@ public class RandomMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (target != null && health > 0f)
-        {
-            transform.GetComponent<NavMeshAgent>().destination = target.position;
-            animation.Play("Allosaurus_Run", PlayMode.StopAll);
-        }
-        else
-        {
-            transform.GetComponent<NavMeshAgent>().destination = transform.position;
-        }
+        
         //else
         //{
         //    if (timeSwitch <= 0)
@@ -70,11 +63,34 @@ public class RandomMovement : MonoBehaviour {
             audio.pitch = UnityEngine.Random.Range(0.8f, 1.1f);
             audio.Play();
         }
+        StartCoroutine(FindTarget());
 
     }
 
-    private void RemoveHealth(float dame) {
-        health -= dame;
+    private IEnumerator FindTarget() {
+        if (target != null && health > 0f)
+        {
+            if (!damaged)
+            {
+                transform.GetComponent<NavMeshAgent>().destination = target.position;
+                animation.Play("Allosaurus_Run", PlayMode.StopAll);
+            }
+            else {
+                animation.Play("Allosaurus_Hit01", PlayMode.StopAll);
+                transform.GetComponent<NavMeshAgent>().destination = transform.position;
+                yield return new WaitForSeconds(0.4f);
+                damaged = false;
+            }
+        }
+        else
+        {
+            transform.GetComponent<NavMeshAgent>().destination = transform.position;
+        }
+    }
+
+
+    private IEnumerator RemoveHealth(float _damage) {
+        health -= _damage;
         if (health <= 0f)
         {
             animation.Play("Allosaurus_Die", PlayMode.StopAll);
@@ -82,8 +98,9 @@ public class RandomMovement : MonoBehaviour {
         else {
             animation.Play("Allosaurus_Hit01", PlayMode.StopAll);
             audio.PlayOneShot(damage);
-            StartCoroutine(WaitAnimationComple("Allosaurus_Hit01"));
+            yield return new WaitForSeconds(0.4f);
             target = GameObject.FindGameObjectWithTag("Player").transform;
+            damaged = true;
         }
 
     }
@@ -98,7 +115,7 @@ public class RandomMovement : MonoBehaviour {
         {
             if (collision.gameObject.tag == "arrow")
             {
-                RemoveHealth(15f);
+                StartCoroutine(RemoveHealth(15f));
             }
         }
         
