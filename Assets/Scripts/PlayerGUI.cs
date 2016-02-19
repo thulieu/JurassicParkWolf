@@ -77,7 +77,6 @@ public class PlayerGUI : MonoBehaviour {
         if (Input.GetKey(KeyCode.W))
         {
             staminaDisplay -= Time.deltaTime / staminaFallRate;
-            Debug.Log("runing");
         }else {
             staminaDisplay += Time.deltaTime / staminaFallRate;
         }
