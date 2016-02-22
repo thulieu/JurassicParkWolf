@@ -115,7 +115,8 @@ public class RandomMovement : MonoBehaviour {
         {
             if (collision.gameObject.tag == "arrow")
             {
-                StartCoroutine(RemoveHealth(15f));
+                Destroy(collision.gameObject);
+                StartCoroutine(RemoveHealth(35f));
             }
         }
         

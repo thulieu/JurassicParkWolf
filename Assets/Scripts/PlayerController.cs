@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
         capCol = GetComponent<CapsuleCollider>();
         run = false;
         diveForward = false;
-        isAim = true;
+        isAim = false;
         bow.SetActive(false);
     }
 	
@@ -74,12 +74,7 @@ public class PlayerController : MonoBehaviour {
         //float moveZ = inputV * 50f * Time.deltaTime;
 
 
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    run = true;
-        //}else{
-        //    run = false;
-        //}
+       
 
         //if (Input.GetKey(KeyCode.Space))
         //{
@@ -108,6 +103,7 @@ public class PlayerController : MonoBehaviour {
 
         lookPos = ray.GetPoint(100);
         HandleFriction();
+        AttackAnimation();
     }
 
     void FixedUpdate() {
@@ -123,7 +119,18 @@ public class PlayerController : MonoBehaviour {
         rbody.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), turnSpeed * Time.deltaTime);
 
         AimWepon();
-        AttackAnimation();
+       
+
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            run = true;
+        }
+        else
+        {
+            run = false;
+        }
+
         anim.SetFloat("inputH", inputH);
         anim.SetFloat("inputV", inputV);
         anim.SetBool("run", run);
